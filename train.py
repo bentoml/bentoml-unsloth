@@ -37,7 +37,7 @@ def llama31_bnb(max_seq_length:int=8196,max_steps:int=100)->int:
   import unsloth, trl, transformers
   from _bentoml_impl.frameworks.unsloth import build_bento
 
-  model, tokenizer = unsloth.FastLanguageModel.from_pretrained('unsloth/Meta-Llama-3.1-70B-bnb-4bit', max_seq_length=max_seq_length, load_in_4bit=True)
+  model, tokenizer = unsloth.FastLanguageModel.from_pretrained('unsloth/Meta-Llama-3.1-8B-bnb-4bit', max_seq_length=max_seq_length, load_in_4bit=True)
   # alpaca chat templates
   tokenizer.chat_template="{% if messages[0]['role'] == 'system' %}{% set loop_messages = messages[1:] %}{% set system_message = messages[0]['content'].strip() + '\n\n' %}{% else %}{% set loop_messages = messages %}{% set system_message = '' %}{% endif %}{{ bos_token + system_message }}{% for message in loop_messages %}{% if (message['role'] == 'user') != (loop.index0 % 2 == 0) %}{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}{% endif %}{% if message['role'] == 'user' %}{{ '### Instruction:\n' + message['content'].strip() + '\n\n' }}{% elif message['role'] == 'assistant' %}{{ '### Response:\n' + message['content'].strip() + eos_token + '\n\n' }}{% endif %}{% if loop.last and message['role'] == 'user' and add_generation_prompt %}{{ '### Instruction:\n' }}{% endif %}{% endfor %}"
   model = unsloth.FastLanguageModel.get_peft_model(
