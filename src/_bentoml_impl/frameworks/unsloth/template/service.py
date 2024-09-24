@@ -37,7 +37,7 @@ class UnslothVLLM:
     model_config = self.engine.engine.get_model_config()
     # inject the engine into the openai serving chat and completion
     vllm_api_server.openai_serving_chat = OpenAIServingChat(
-      async_engine_client=self.engine,
+      self.engine,
       served_model_names=[self.bentomodel.path],
       chat_template=None,
       response_role='assistant',
@@ -47,7 +47,7 @@ class UnslothVLLM:
       request_logger=None,
     )
     vllm_api_server.openai_serving_completion = OpenAIServingCompletion(
-      async_engine_client=self.engine,
+      self.engine,
       served_model_names=[self.bentomodel.path],
       model_config=model_config,
       lora_modules=None,
