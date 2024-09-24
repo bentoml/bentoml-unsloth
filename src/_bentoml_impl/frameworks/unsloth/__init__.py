@@ -74,7 +74,7 @@ def build_bento(
 
   build_opts = dict(
     python=dict(
-      packages=['pyyaml', 'vllm==0.5.5', 'unsloth[huggingface] @ git+https://github.com/bentoml/unsloth.git@main'],
+      packages=['pyyaml', 'vllm==0.6.1.post2', 'unsloth[huggingface]>=2024.9.post2'],
       lock_packages=True,
     ),
     envs=[{'name': 'HF_TOKEN'}],
