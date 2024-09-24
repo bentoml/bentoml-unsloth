@@ -9,6 +9,8 @@ from .mapping import RUNTIME_MAPPING as MAPPINGS, get_extras
 if importlib.util.find_spec("unsloth") is None:
   raise bentoml.exceptions.MissingDependencyException("'unsloth' is required in order to use module 'bentoml.unsloth', install unsloth with 'pip install bentoml[unsloth]'.")
 
+__all__ = ['build_bento']
+
 if t.TYPE_CHECKING:
   from _bentoml_sdk.service.config import ServiceConfig
   from transformers import PreTrainedModel, PreTrainedTokenizerFast
