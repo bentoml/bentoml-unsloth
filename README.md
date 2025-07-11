@@ -18,7 +18,7 @@ To use this integration, one can use `bentoml.unsloth.build_bento`:
 bentoml.unsloth.build_bento(model, tokenizer)
 ```
 
-If you model is continued froma fine-tuned checkpoint, then `model_name` must be passed as well:
+If you model is continued from a fine-tuned checkpoint, then `model_name` must be passed as well:
 
 ```python
 bentoml.unsloth.build_bento(model, tokenizer, model_name="llama-3-continued-from-checkpoint")
